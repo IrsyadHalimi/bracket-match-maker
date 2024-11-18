@@ -25,16 +25,30 @@ button {
 }
 
 .match {
-  margin: 10px 0;
+  color: white;
+  background-color:rgb(0, 2, 134);
+  margin: 30px;
   font-size: 18px;
+  height: 180px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
 }
 
 .team-logo {
   width: 50px;
   height: 50px;
-  left: 200px;
   object-fit: cover;
   margin: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+
+.team-info {
+  color: white;
+  display: flex;
+  justify-content: center;  /* Center content horizontally */
+  align-items: center;     /* Center content vertically */
+  height: 60px; /* Set a height for vertical centering */
+  width : 400px; /* Set a height for vertical centering */
+  margin: 0 auto;  /* Center the .team-info box horizontally in the parent container */
 }

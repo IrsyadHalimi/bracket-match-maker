@@ -36,14 +36,14 @@
       <h2>Bracket</h2>
       <template x-for="(match, index) in bracket" :key="index">
         <div class="match">
-          <div>
+          <div class="team-info">
             <img :src="match[0]?.logo || ''" :alt="`Team Logo ${match[0]?.team || 'TBD'}`" class="team-logo" />
-            <span x-text="match[0]?.team || 'TBD'"></span>
+            <h5 x-text="match[0]?.team || 'TBD'"></h5>
           </div>
-          <span>vs</span>
-          <div>
+          vs
+          <div class="team-info">
             <img :src="match[1]?.logo || ''" :alt="`Team Logo ${match[1]?.team || 'TBD'}`" class="team-logo" />
-            <span x-text="match[1]?.team || 'TBD'"></span>
+            <h5 x-text="match[1]?.team || 'TBD'"></h5>
           </div>
         </div>
       </template>
