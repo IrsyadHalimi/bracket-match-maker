@@ -5,9 +5,30 @@ function bracketApp() {
     bracket: [], // Generated bracket
     isGenerated: false, // Flag to track if bracket has been generated
 
+    init() {
+      const savedData = JSON.parse(localStorage.getItem('bracketData'));
+      if (savedData) {
+        this.teams = savedData.teams || [];
+        this.logos = savedData.logos || [];
+        this.bracket = savedData.bracket || [];
+        this.isGenerated = savedData.isGenerated || false;
+      }
+    },
+
+    saveToLocalStorage() {
+      const data = {
+        teams: this.teams,
+        logos: this.logos,
+        bracket: this.bracket,
+        isGenerated: this.isGenerated,
+      };
+      localStorage.setItem('bracketData', JSON.stringify(data));
+    },
+
     addTeam() {
       this.teams.push(''); // Add empty input for team
       this.logos.push(''); // Add empty slot for logo
+      this.saveToLocalStorage();
     },
 
     handleLogoUpload(index, event) {
@@ -16,6 +37,7 @@ function bracketApp() {
         const reader = new FileReader();
         reader.onload = (e) => {
           this.logos[index] = e.target.result; // Save image as Base64
+          this.saveToLocalStorage();
         };
         reader.readAsDataURL(file);
       }
@@ -49,6 +71,7 @@ function bracketApp() {
       }
 
       this.isGenerated = true;
+      this.saveToLocalStorage();
     },
 
     resetBracket() {
@@ -56,6 +79,7 @@ function bracketApp() {
       this.logos = [];
       this.bracket = [];
       this.isGenerated = false;
+      localStorage.removeItem('bracketData');
     }
   };
 }
