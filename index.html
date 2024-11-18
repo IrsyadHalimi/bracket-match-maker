@@ -19,10 +19,16 @@
       <template x-for="(team, index) in teams" :key="index">
         <div>
           <input type="text" x-model="teams[index]" placeholder="Team Name" />
+          <input type="file" @change="handleLogoUpload(index, $event)" />
+          <div x-show="logos[index]">
+            <img :src="logos[index]" alt="Team Logo" class="team-logo" />
+          </div>
         </div>
       </template>
       <button @click="addTeam">Add Team</button>
-      <button @click="generateBracket" :disabled="teams.length < 2">Generate Bracket</button>
+      <button @click="generateBracket" :disabled="teams.length < 2"
+        x-text="isGenerated ? 'Shuffle' : 'Generate Bracket'">
+      </button>
     </div>
 
     <!-- Bracket Display -->
@@ -30,7 +36,15 @@
       <h2>Bracket</h2>
       <template x-for="(match, index) in bracket" :key="index">
         <div class="match">
-          <span x-text="match[0] || 'TBD'"></span> vs <span x-text="match[1] || 'TBD'"></span>
+          <div>
+            <img :src="match[0]?.logo || ''" alt="Team Logo" class="team-logo" />
+            <span x-text="match[0]?.team || 'TBD'"></span>
+          </div>
+          <span>vs</span>
+          <div>
+            <img :src="match[1]?.logo || ''" alt="Team Logo" class="team-logo" />
+            <span x-text="match[1]?.team || 'TBD'"></span>
+          </div>
         </div>
       </template>
       <button @click="resetBracket">Reset</button>
