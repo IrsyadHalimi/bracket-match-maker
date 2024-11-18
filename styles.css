@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+
+input {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.bracket {
+  margin-top: 20px;
+}
+
+.match {
+  margin: 10px 0;
+  font-size: 18px;
+}

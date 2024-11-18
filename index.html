@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soccer Bracket Generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+
+<body>
+  <div x-data="bracketApp" class="container">
+    <h1>Soccer Bracket Generator</h1>
+
+    <!-- Input Section -->
+    <div>
+      <h2>Enter Teams</h2>
+      <template x-for="(team, index) in teams" :key="index">
+        <div>
+          <input type="text" x-model="teams[index]" placeholder="Team Name" />
+        </div>
+      </template>
+      <button @click="addTeam">Add Team</button>
+      <button @click="generateBracket" :disabled="teams.length < 2">Generate Bracket</button>
+    </div>
+
+    <!-- Bracket Display -->
+    <div x-show="bracket.length > 0" class="bracket">
+      <h2>Bracket</h2>
+      <template x-for="(match, index) in bracket" :key="index">
+        <div class="match">
+          <span x-text="match[0] || 'TBD'"></span> vs <span x-text="match[1] || 'TBD'"></span>
+        </div>
+      </template>
+      <button @click="resetBracket">Reset</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
